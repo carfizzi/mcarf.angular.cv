@@ -15,6 +15,7 @@
     }
     <div class="command">
         <span class="prompt">$ </span>
-        <input class="command-line" type="text" [(ngModel)]="currentInput" id="command-input">
+        <span>{{currentInput}}</span>
+        <span class="cursor" [ngClass]="{'invisible': !isCursorVisible}">_</span>
     </div>
 </div>

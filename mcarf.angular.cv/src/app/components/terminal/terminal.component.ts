@@ -1,5 +1,7 @@
-import { Component, HostListener } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { interval } from 'rxjs';
 
 interface Command {
   input: string;
@@ -11,23 +13,47 @@ interface Command {
   templateUrl: './terminal.component.html',
   styleUrls: ['./terminal.component.css'],
   standalone: true,
-  imports: [FormsModule],
+  imports: [CommonModule, FormsModule],
 })
-export class TerminalComponent {
+export class TerminalComponent implements OnInit {
   public commands: Command[] = [];
   public currentInput: string = '';
+  public isCursorVisible: boolean = true;
 
-  constructor() { }
+  private cursorInterval$ = interval(1000);
 
-  @HostListener('document:keypress', ['$event'])
-  public handleKeyboardEvent(event: KeyboardEvent) { 
-    console.log(event.key)
-    if (event.key === "Enter") {
+  constructor() {}
+
+  ngOnInit(): void {
+    this.cursorInterval$.subscribe(() => {
+      this.isCursorVisible = !this.isCursorVisible;
+    });
+  }
+
+  @HostListener('document:keydown', ['$event'])
+  public handleKeyboardEvent(event: KeyboardEvent) {
+    if (event.ctrlKey && event.key.toLowerCase() === 'l') {
+      this.currentInput = '';
+      this.commands = [];
+      return;
+    }
+    if (event.key === 'Enter') {
       this.executeCommand();
+      return;
     }
-    else {
-      this.currentInput += event.key;
+    if (event.key === 'Backspace') {
+      if (this.currentInput.length > 0)
+        this.currentInput = this.currentInput.substring(
+          0,
+          this.currentInput.length - 1
+        );
+      else this.currentInput = '';
+      return;
     }
+    if (event.key.length > 1)
+      return;
+    else 
+      this.currentInput += event.key[0];
   }
 
   private executeCommand(): void {
@@ -44,9 +70,9 @@ export class TerminalComponent {
   private simulateCommandExecution(input: string): string {
     switch (input.trim().toLowerCase()) {
       case 'help':
-        return "Elenco dei comandi disponibili: help, about, contact";
+        return 'Elenco dei comandi disponibili: help, about, contact';
       case 'about':
-        return "Questo è un terminale simulato creato con Angular.";
+        return 'Questo è un terminale simulato creato con Angular.';
       case 'contact':
         return "Puoi contattarci all'indirizzo email: marco.carfizzi@gmail.com";
       default:

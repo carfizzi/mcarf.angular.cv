@@ -1,11 +1,80 @@
 /* You can add global styles to this file, and also import other style files */
 body {
-    background-color: black;
-    color: rgb(31, 136, 108);
+    background-color: var(--text-primary);
+    color: var(--text-accent);
     font-family: monospace;
     height: 100%;
-    width: 100%;
+    overflow: hidden;
 }
+
+/* COLORS https://coolors.co/2191fb-ba274a-4e6e58-4c8577-1b1b1e */
+:root {
+    --text-primary: #1B1B1E;
+    --text-accent: #4C8577;
+    --text-accent-secondary: #4E6E58;
+    --text-secondary: #2191FB;
+    --text-error: #BA274A;
+}
+
+/* WebKit (Safari, Chrome) */
+::-webkit-scrollbar {
+    width: 4px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--text-accent-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+}
+
+/* Firefox */
+::-moz-scrollbar {
+    width: 4px;
+}
+
+::-moz-scrollbar-track {
+    background: var(--text-accent-secondary);
+}
+
+::-moz-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+}
+
+/* Edge and IE */
+/* Note: Non è possibile arrotondare le scrollbar in Edge e IE */
+/* Tuttavia, possiamo impostare il colore */
+/* Ricorda che le scrollbar non sono personalizzabili in IE11 */
+*::-ms-scrollbar {
+    width: 4px;
+}
+
+*::-ms-scrollbar-track {
+    background: var(--text-accent-secondary);
+}
+
+*::-ms-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Incluso per garantire la compatibilità con altri browser */
+/* Potrebbe non essere necessario in base al tuo caso d'uso */
+scrollbar {
+    width: 4px;
+}
+
+scrollbar-track {
+    background: var(--text-accent-secondary);
+}
+
+scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+}
+
 
 .d-flex {
     display: flex;

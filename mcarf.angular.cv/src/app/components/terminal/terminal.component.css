@@ -1,6 +1,6 @@
 .terminal-box {
     border-radius: 8px;
-    border: 2px solid rgb(100, 160, 147);
+    border: 2px solid var(--text-accent);
     padding: 16px;
     margin: 8px;
 }
@@ -15,17 +15,20 @@
     border: 0.1px solid gray;
 }
 
-.command-line {
-    border: 0px transparent;
-    background-color: black;
-    color: rgb(31, 136, 108);
-    font-family: monospace;
-}
-
 .command {
     margin-bottom: 5px;
 }
 
 .prompt {
-    color: #007bff;
+    color: var(--text-secondary);
+}
+
+.cursor {
+    transition: ease 0.3s all;
+    opacity: 1;
+    font-weight: 600;
+}
+
+.cursor.invisible {
+    opacity: 0;
 }
