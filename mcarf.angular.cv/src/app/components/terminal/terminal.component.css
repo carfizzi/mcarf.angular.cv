@@ -1,0 +1,31 @@
+.terminal-box {
+    border-radius: 8px;
+    border: 2px solid rgb(100, 160, 147);
+    padding: 16px;
+    margin: 8px;
+}
+
+.big-box {
+    height: 85vh;
+    overflow: auto;
+}
+
+.separator {
+    width: 95%;
+    border: 0.1px solid gray;
+}
+
+.command-line {
+    border: 0px transparent;
+    background-color: black;
+    color: rgb(31, 136, 108);
+    font-family: monospace;
+}
+
+.command {
+    margin-bottom: 5px;
+}
+
+.prompt {
+    color: #007bff;
+}

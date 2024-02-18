@@ -1,1 +1,32 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+    background-color: black;
+    color: rgb(31, 136, 108);
+    font-family: monospace;
+    height: 100%;
+    width: 100%;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.justify-content-between {
+    justify-content: space-between;
+}
+
+.justify-content-center {
+    justify-content: center;
+}
+
+.flew-row {
+    flex-direction: row;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.align-items-center {
+    align-items: center;
+}

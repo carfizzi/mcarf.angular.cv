@@ -1,0 +1,20 @@
+<div class="terminal-box d-flex flex-row justify-content-between align-items-center">
+    <span>last login: 18/02/2024</span>
+    <span>notifications [0]</span>
+</div>
+<div class="terminal-box big-box d-flex flex-column">
+    <span class="command">cmd terminal</span>
+    <div class="d-flex command justify-content-center">
+        <span class="separator"></span>
+    </div>
+    @for (command of commands; track $index) {
+    <div class="command">
+        <span class="prompt">$ </span>{{ command.input }}
+        <div class="output">{{ command.output }}</div>
+    </div>
+    }
+    <div class="command">
+        <span class="prompt">$ </span>
+        <input class="command-line" type="text" [(ngModel)]="currentInput" id="command-input">
+    </div>
+</div>
