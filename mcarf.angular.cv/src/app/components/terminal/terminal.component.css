@@ -27,6 +27,10 @@
     color: var(--text-error);
 }
 
+.old-input {
+    opacity: 0.55;
+}
+
 .cursor {
     transition: ease 0.3s all;
     opacity: 1;
