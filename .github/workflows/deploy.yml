@@ -31,5 +31,5 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: mcarf.angular.cv/dist/mcarf.angular.cv
+          publish_dir: mcarf.angular.cv/dist/mcarf.angular.cv/browser
           enable_jekyll: true
