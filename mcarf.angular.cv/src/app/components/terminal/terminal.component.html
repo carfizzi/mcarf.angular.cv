@@ -1,5 +1,5 @@
 <div class="terminal-box d-flex flex-row justify-content-between align-items-center">
-    <span>last login: 18/02/2024</span>
+    <span>last login: {{lastLoginDate | date:'long'}}</span>
     <span>notifications [0]</span>
 </div>
 <div class="terminal-box big-box d-flex flex-column">
@@ -10,7 +10,7 @@
     @for (command of commands; track $index) {
     <div class="command">
         <span class="prompt">$ </span>{{ command.input }}
-        <div class="output">{{ command.output }}</div>
+        <div [ngClass]="{'output': command.type === CommandType.SECONDARY, 'error': command.type === CommandType.ERROR}" class="output">{{ command.output }}</div>
     </div>
     }
     <div class="command">

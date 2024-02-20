@@ -1,12 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { interval } from 'rxjs';
-
-interface Command {
-  input: string;
-  output: string;
-}
+import { ChatService } from '../../services/chat/chat.service';
+import { Command } from '../../models/command';
+import { CommandType } from '../../enums/command-type';
 
 @Component({
   selector: 'app-terminal',
@@ -16,13 +14,18 @@ interface Command {
   imports: [CommonModule, FormsModule],
 })
 export class TerminalComponent implements OnInit {
+  @Input() lastLoginDate: Date | undefined = new Date();
+
   public commands: Command[] = [];
+  public CommandType = CommandType;
   public currentInput: string = '';
   public isCursorVisible: boolean = true;
 
   private cursorInterval$ = interval(1000);
 
-  constructor() {}
+  constructor(
+    private chatService: ChatService,
+  ) { }
 
   ngOnInit(): void {
     this.cursorInterval$.subscribe(() => {
@@ -52,7 +55,7 @@ export class TerminalComponent implements OnInit {
     }
     if (event.key.length > 1)
       return;
-    else 
+    else
       this.currentInput += event.key[0];
   }
 
@@ -61,10 +64,18 @@ export class TerminalComponent implements OnInit {
 
     // Simulated command execution
     const output = this.simulateCommandExecution(this.currentInput);
+    if (output === '') {
+      this.handlePrompt();
+    } else {
+      this.updateCommands(this.currentInput, output);
+      this.currentInput = '';
+    }
+  }
 
-    this.commands.push({ input: this.currentInput, output: output });
-
-    this.currentInput = '';
+  private updateCommands(input: string, output: string, type: CommandType = CommandType.SECONDARY) {
+    let command = new Command(input, output);
+    command.type = type;
+    this.commands.push(command);
   }
 
   private simulateCommandExecution(input: string): string {
@@ -76,7 +87,23 @@ export class TerminalComponent implements OnInit {
       case 'contact':
         return "Puoi contattarci all'indirizzo email: marco.carfizzi@gmail.com";
       default:
-        return `Comando non riconosciuto: ${input}`;
+        return '';
     }
+
+  }
+
+  private handlePrompt(): void {
+    this.chatService.chat(this.currentInput)
+      .subscribe({
+        next: (res) => {
+          this.updateCommands(this.currentInput, res);
+          this.currentInput = '';
+        },
+        error: (err: any) => {
+          console.error(err);
+          this.updateCommands(this.currentInput, `ERROR: ${JSON.stringify(err.error.error.message).replace('"', '')}`, CommandType.ERROR);
+          this.currentInput = '';
+        }
+      });
   }
 }

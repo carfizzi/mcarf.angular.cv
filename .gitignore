@@ -54,3 +54,4 @@ e2e/*.map
 
 # End of https://www.toptal.com/developers/gitignore/api/angular,visualstudiocode
 .DS_Store
+mcarf.angular.cv/src/app/environments/environment.ts

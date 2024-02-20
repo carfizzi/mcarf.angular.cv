@@ -23,6 +23,10 @@
     color: var(--text-secondary);
 }
 
+.error {
+    color: var(--text-error);
+}
+
 .cursor {
     transition: ease 0.3s all;
     opacity: 1;
