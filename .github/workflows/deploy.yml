@@ -20,9 +20,11 @@ jobs:
 
       - name: Install dependencies
         run: npm install
+        working.directory: 'mcarf.angular.cv'
 
       - name: Build Angular app
         run: npm run build
+        working.directory: 'mcarf.angular.cv'
 
       - name: Deploy
         if: success()
