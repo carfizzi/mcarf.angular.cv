@@ -24,10 +24,10 @@ jobs:
 
       - name: Set OpenAI API Key
         run: |
-          echo "export const environment = {" > src/environments/environment.prod.ts
-          echo "  production: true," >> src/environments/environment.prod.ts
-          echo "  openaiApiKey: '$OPENAI_API_KEY'" >> src/environments/environment.prod.ts
-          echo "};" >> src/environments/environment.prod.ts
+          echo "export const environment = {" > mcarf.angular.cv/src/environments/environment.prod.ts
+          echo "  production: true," >> mcarf.angular.cv/src/environments/environment.prod.ts
+          echo "  openaiApiKey: '$OPENAI_API_KEY'" >> mcarf.angular.cv/src/environments/environment.prod.ts
+          echo "};" >> mcarf.angular.cv/src/environments/environment.prod.ts
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
 
