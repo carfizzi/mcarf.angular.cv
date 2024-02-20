@@ -24,12 +24,11 @@ jobs:
 
       - name: Build Angular app
         run: npm run build
-        working-directory: 'mcarf.angular.cv'
 
       - name: Deploy
         if: success()
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: dist/mcarf.angular.cv
+          publish_dir: mcarf.angular.cv/dist/mcarf.angular.cv
           enable_jekyll: true
