@@ -24,7 +24,7 @@ jobs:
 
       - name: Set Environment
         run: |
-          touch "mcarf.angular.cv/src/app/environments/environment.prod.ts"
+          touch mcarf.angular.cv/src/app/environments/environment.prod.ts
           echo "export const environment = {" > mcarf.angular.cv/src/app/environments/environment.prod.ts
           echo "  production: true," >> mcarf.angular.cv/src/app/environments/environment.prod.ts
           echo "  openaiApiKey: ''" >> mcarf.angular.cv/src/app/environments/environment.prod.ts
