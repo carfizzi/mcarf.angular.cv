@@ -17,27 +17,21 @@ export class TerminalComponent implements OnInit {
   public commands: Command[] = [];
   public CommandType = CommandType;
   public currentInput: string = '';
-  public isCursorVisible: boolean = true;
   public isComputingCommand: boolean = false;
 
   private command$: Subject<string> = new Subject<string>();
-  private cursorInterval$ = interval(1000);
 
   constructor(
     private chatService: ChatService,
   ) { }
 
   ngOnInit(): void {
-    this.cursorInterval$.subscribe(() => {
-      this.isCursorVisible = !this.isCursorVisible;
-    });
-
     this.command$
       .pipe(
         mergeMap(observable => of(observable), 1)
       )
       .subscribe((command: string) => {
-        const output = this.simulateCommandExecution(command);
+        const output = this.executeInputCommand(command);
         if (output === '') {
           this.handlePrompt();
         } else {
@@ -49,45 +43,57 @@ export class TerminalComponent implements OnInit {
 
   @HostListener('document:keydown', ['$event'])
   public handleKeyboardEvent(event: KeyboardEvent) {
-    if(this.isComputingCommand)
+    if (this.isComputingCommand)
       return;
     if (event.ctrlKey && event.key.toLowerCase() === 'l') {
-      this.currentInput = '';
-      this.commands = [];
-      return;
+      this.handleCtrlL();
+    } else if (event.key === 'Enter') {
+      this.handleEnter();
+    } else if (event.key === 'Backspace') {
+      this.handleBackspace();
+    } else if (event.key.length === 1) {
+      this.handleCharacterKey(event.key[0]);
     }
-    if (event.key === 'Enter') {
-      this.executeCommand();
-      return;
-    }
-    if (event.key === 'Backspace') {
-      if (this.currentInput.length > 0)
-        this.currentInput = this.currentInput.substring(0, this.currentInput.length - 1);
-      else 
-        this.currentInput = '';
-      return;
-    }
-    if (event.key.length > 1)
-      return;
-    else
-      this.currentInput += event.key[0];
   }
 
-  // TO-DO: handle command execution with observables, run one at a time
-  private executeCommand(): void {
+  private handleCtrlL(): void {
+    this.currentInput = '';
+    this.commands = [];
+  }
+
+  private handleEnter(): void {
+    this.executeAICommand();
+  }
+
+  private handleBackspace(): void {
+    if (this.currentInput.length > 0)
+      this.currentInput = this.currentInput.substring(0, this.currentInput.length - 1);
+    else
+      this.currentInput = '';
+  }
+
+  private handleCharacterKey(key: string): void {
+    this.currentInput += key;
+  }
+
+  // Handles the execution of an AI command
+  private executeAICommand(): void {
     if (this.currentInput.trim() === '')
       return;
     this.isComputingCommand = true;
     this.command$.next(this.currentInput);
   }
 
+  // Update command history after being done with its execution
   private updateCommands(input: string, output: string, type: CommandType = CommandType.SECONDARY) {
     let command = new Command(input, output, type);
     this.commands.push(command);
     this.isComputingCommand = false;
   }
 
-  private simulateCommandExecution(input: string): string {
+  // Handles the given command by returning the proper answer.
+  // Default case is empty string and will be handled as an OpenAI request
+  private executeInputCommand(input: string): string {
     switch (input.trim().toLowerCase()) {
       case 'help':
         return 'Elenco dei comandi disponibili: help, about, contact';

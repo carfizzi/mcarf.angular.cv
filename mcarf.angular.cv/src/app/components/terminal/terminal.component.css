@@ -1,3 +1,8 @@
+@keyframes blink {
+    0%, 100% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+  }
+
 .big-box {
     height: 85vh;
     overflow: auto;
@@ -25,9 +30,8 @@
 }
 
 .cursor {
-    transition: ease 0.3s all;
-    opacity: 1;
     font-weight: 600;
+    animation: blink 1.2s ease-in-out infinite;
 }
 
 .cursor.invisible {
