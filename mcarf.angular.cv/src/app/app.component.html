@@ -1,1 +1,5 @@
-<app-terminal [lastLoginDate]="lastLoginDate"></app-terminal>
+<input type="text" #touchCatcher id="touch-catcher" style="opacity: 0; position: fixed; z-index: -1;" />
+<app-header [lastLoginDate]="lastLoginDate"></app-header>
+<div (click)="toggleKeyboard()">
+    <app-terminal></app-terminal>
+</div>
