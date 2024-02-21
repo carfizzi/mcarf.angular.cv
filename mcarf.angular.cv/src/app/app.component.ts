@@ -3,6 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { TerminalComponent } from "./components/terminal/terminal.component";
 import { CookieStorageService } from './services/cookies/cookies.service';
 import { HeaderComponent } from './components/header/header.component';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +13,7 @@ import { HeaderComponent } from './components/header/header.component';
   imports: [RouterOutlet, TerminalComponent, HeaderComponent]
 })
 export class AppComponent implements OnInit {
-  title = 'mcarf.angular.cv';
+  title = 'Marco Carfizzi';
 
   public lastLoginDate: Date | undefined;
   private isTouchKeyboardOpened: boolean = false;
@@ -20,10 +21,12 @@ export class AppComponent implements OnInit {
   @ViewChild('touchCatcher') hiddenInput: ElementRef | undefined;
 
   constructor(
-    private cookiesService: CookieStorageService
+    private cookiesService: CookieStorageService,
+    private titleService: Title
   ) { }
 
   ngOnInit(): void {
+    this.titleService.setTitle('Marco Carfizzi - Home')
     this.updateLastLoginDate();
   }
 
