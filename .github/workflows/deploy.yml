@@ -11,10 +11,10 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 20
 
@@ -26,7 +26,7 @@ jobs:
         run: |
           echo "export const environment = {" > mcarf.angular.cv/src/app/environments/environment.prod.ts
           echo "  production: true," >> mcarf.angular.cv/src/app/environments/environment.prod.ts
-          echo "  openaiApiKey: '" >> mcarf.angular.cv/src/app/environments/environment.prod.ts
+          echo "  openaiApiKey: ''" >> mcarf.angular.cv/src/app/environments/environment.prod.ts
           echo "};" >> mcarf.angular.cv/src/app/environments/environment.prod.ts
 
       - name: Build Angular app
