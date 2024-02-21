@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { interval } from 'rxjs';
+import { Subject, interval, mergeMap, of } from 'rxjs';
 import { ChatService } from '../../services/chat/chat.service';
 import { Command } from '../../models/command';
 import { CommandType } from '../../enums/command-type';
@@ -18,7 +18,9 @@ export class TerminalComponent implements OnInit {
   public CommandType = CommandType;
   public currentInput: string = '';
   public isCursorVisible: boolean = true;
+  public isComputingCommand: boolean = false;
 
+  private command$: Subject<string> = new Subject<string>();
   private cursorInterval$ = interval(1000);
 
   constructor(
@@ -29,10 +31,26 @@ export class TerminalComponent implements OnInit {
     this.cursorInterval$.subscribe(() => {
       this.isCursorVisible = !this.isCursorVisible;
     });
+
+    this.command$
+      .pipe(
+        mergeMap(observable => of(observable), 1)
+      )
+      .subscribe((command: string) => {
+        const output = this.simulateCommandExecution(command);
+        if (output === '') {
+          this.handlePrompt();
+        } else {
+          this.updateCommands(command, output);
+          this.currentInput = '';
+        }
+      });
   }
 
   @HostListener('document:keydown', ['$event'])
   public handleKeyboardEvent(event: KeyboardEvent) {
+    if(this.isComputingCommand)
+      return;
     if (event.ctrlKey && event.key.toLowerCase() === 'l') {
       this.currentInput = '';
       this.commands = [];
@@ -44,11 +62,9 @@ export class TerminalComponent implements OnInit {
     }
     if (event.key === 'Backspace') {
       if (this.currentInput.length > 0)
-        this.currentInput = this.currentInput.substring(
-          0,
-          this.currentInput.length - 1
-        );
-      else this.currentInput = '';
+        this.currentInput = this.currentInput.substring(0, this.currentInput.length - 1);
+      else 
+        this.currentInput = '';
       return;
     }
     if (event.key.length > 1)
@@ -59,22 +75,16 @@ export class TerminalComponent implements OnInit {
 
   // TO-DO: handle command execution with observables, run one at a time
   private executeCommand(): void {
-    if (this.currentInput.trim() === '') return;
-
-    // Simulated command execution
-    const output = this.simulateCommandExecution(this.currentInput);
-    if (output === '') {
-      this.handlePrompt();
-    } else {
-      this.updateCommands(this.currentInput, output);
-      this.currentInput = '';
-    }
+    if (this.currentInput.trim() === '')
+      return;
+    this.isComputingCommand = true;
+    this.command$.next(this.currentInput);
   }
 
   private updateCommands(input: string, output: string, type: CommandType = CommandType.SECONDARY) {
-    let command = new Command(input, output);
-    command.type = type;
+    let command = new Command(input, output, type);
     this.commands.push(command);
+    this.isComputingCommand = false;
   }
 
   private simulateCommandExecution(input: string): string {
