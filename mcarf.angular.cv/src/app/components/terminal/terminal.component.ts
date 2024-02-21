@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, HostListener, Input, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { interval } from 'rxjs';
 import { ChatService } from '../../services/chat/chat.service';
@@ -14,8 +14,6 @@ import { CommandType } from '../../enums/command-type';
   imports: [CommonModule, FormsModule],
 })
 export class TerminalComponent implements OnInit {
-  @Input() lastLoginDate: Date | undefined = new Date();
-
   public commands: Command[] = [];
   public CommandType = CommandType;
   public currentInput: string = '';
@@ -59,6 +57,7 @@ export class TerminalComponent implements OnInit {
       this.currentInput += event.key[0];
   }
 
+  // TO-DO: handle command execution with observables, run one at a time
   private executeCommand(): void {
     if (this.currentInput.trim() === '') return;
 

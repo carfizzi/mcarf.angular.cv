@@ -99,3 +99,10 @@ scrollbar-thumb {
 .align-items-center {
     align-items: center;
 }
+
+.terminal-box {
+    border-radius: 8px;
+    border: 2px solid var(--text-accent);
+    padding: 16px;
+    margin: 8px;
+}
