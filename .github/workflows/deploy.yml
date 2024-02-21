@@ -22,14 +22,12 @@ jobs:
         run: npm install
         working-directory: 'mcarf.angular.cv'
 
-      # - name: Set OpenAI API Key
-      #   run: |
-      #     echo "export const environment = {" > mcarf.angular.cv/src/app/environments/environment.prod.ts
-      #     echo "  production: true," >> mcarf.angular.cv/src/app/environments/environment.prod.ts
-      #     echo "  openaiApiKey: '$OPENAI_API_KEY'" >> mcarf.angular.cv/src/app/environments/environment.prod.ts
-      #     echo "};" >> mcarf.angular.cv/src/app/environments/environment.prod.ts
-      #   env:
-      #     OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      - name: Set OpenAI API Key
+        run: |
+          echo "export const environment = {" > mcarf.angular.cv/src/app/environments/environment.prod.ts
+          echo "  production: true," >> mcarf.angular.cv/src/app/environments/environment.prod.ts
+          echo "  openaiApiKey: '" >> mcarf.angular.cv/src/app/environments/environment.prod.ts
+          echo "};" >> mcarf.angular.cv/src/app/environments/environment.prod.ts
 
       - name: Build Angular app
         run: npm run build
