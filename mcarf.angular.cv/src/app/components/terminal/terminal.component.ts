@@ -5,13 +5,14 @@ import { Subject, interval, mergeMap, of } from 'rxjs';
 import { ChatService } from '../../services/chat/chat.service';
 import { Command } from '../../models/command';
 import { CommandType } from '../../enums/command-type';
+import { AsciiSpinnerComponent } from "../ascii-spinner/ascii-spinner.component";
 
 @Component({
-  selector: 'app-terminal',
-  templateUrl: './terminal.component.html',
-  styleUrls: ['./terminal.component.css'],
-  standalone: true,
-  imports: [CommonModule, FormsModule],
+    selector: 'app-terminal',
+    templateUrl: './terminal.component.html',
+    styleUrls: ['./terminal.component.css'],
+    standalone: true,
+    imports: [CommonModule, FormsModule, AsciiSpinnerComponent]
 })
 export class TerminalComponent implements OnInit {
   public commands: Command[] = [];
