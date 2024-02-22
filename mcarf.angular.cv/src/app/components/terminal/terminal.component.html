@@ -6,12 +6,18 @@
     @for (command of commands; track $index) {
     <div class="command">
         <span class="prompt">$ </span><span class="old-input">{{ command.input }}</span>
-        <div [ngClass]="{'output': command.type === CommandType.SECONDARY, 'error': command.type === CommandType.ERROR}" class="output">{{ command.output }}</div>
+        <div [ngClass]="{'output': command.type === CommandType.SECONDARY, 'error': command.type === CommandType.ERROR}"
+            class="output">{{ command.output }}</div>
     </div>
     }
     <div class="command">
         <span class="prompt">$ </span>
         <span>{{currentInput}}</span>
-        <span class="cursor" [ngClass]="{'invisible': !isCursorVisible}">_</span>
+        @if (!isComputingCommand) {
+        <span class="cursor">_</span>
+        }
+        @if (isComputingCommand) {
+        <app-ascii-spinner></app-ascii-spinner>
+        }
     </div>
 </div>
