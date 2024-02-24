@@ -1,4 +1,7 @@
 <div class="terminal-box d-flex flex-row justify-content-between align-items-center">
     <span>last login: {{(lastLoginDate | date:'long')?.toLowerCase()}}</span>
-    <span>notifications [0]</span>
+    <div class="d-flex" style="gap: 8px">
+        <span>notifications</span>
+        <span id="notifications-number" (click)="onNotificationNumberClick()">[{{notifications}}]</span>
+    </div>
 </div>
