@@ -117,7 +117,7 @@ export class TerminalComponent implements OnInit {
         },
         error: (err: any) => {
           console.error(err);
-          this.updateCommands(this.currentInput, `ERROR: ${JSON.stringify(err.error.error.message).replace('"', '')}`, CommandType.ERROR);
+          this.updateCommands(this.currentInput, `ERROR: ${JSON.stringify(err.error?.error?.message ?? "Unknown error").replace('"', '')}`, CommandType.ERROR);
           this.currentInput = '';
         }
       });
