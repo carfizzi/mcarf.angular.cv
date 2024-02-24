@@ -117,7 +117,7 @@ export class TerminalComponent implements OnInit {
         },
         error: (err: any) => {
           console.error(err);
-          this.updateCommands(this.currentInput, `ERROR: ${JSON.stringify(err.error?.error?.message ?? "Something went bad with the prompt request! Code: " + err.customData.httpStatus).replaceAll('"', '')}`, CommandType.ERROR);
+          this.updateCommands(this.currentInput, `ERROR: ${JSON.stringify(err.error?.error?.message ?? "Something went wrong with the prompt request!").replaceAll('"', '')}`, CommandType.ERROR);
           this.currentInput = '';
         }
       });
