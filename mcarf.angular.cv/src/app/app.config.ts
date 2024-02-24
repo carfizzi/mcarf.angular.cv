@@ -3,9 +3,10 @@ import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
 import { provideHttpClient } from '@angular/common/http';
-import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
+import { provideFirebaseApp, initializeApp, getApp } from '@angular/fire/app';
 import { getFunctions, provideFunctions } from '@angular/fire/functions';
 import { environment } from '../environments/environment';
+import { ReCaptchaV3Provider, initializeAppCheck, provideAppCheck } from '@angular/fire/app-check';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -13,6 +14,9 @@ export const appConfig: ApplicationConfig = {
     importProvidersFrom([
       provideFirebaseApp(() => initializeApp(environment.firebase)),
       provideFunctions(() => getFunctions()),
+      provideAppCheck(() => initializeAppCheck(getApp(), {
+        provider: new ReCaptchaV3Provider('6LcTTH4pAAAAADSEPowmz5xwy7IRwhwb10mfqViG')
+      }))
     ]),
     provideRouter(routes)
   ]

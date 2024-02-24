@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, from, map } from 'rxjs';
-import { ChatResponse } from '../../models/responses/chat-response';
 import { Functions, httpsCallable } from '@angular/fire/functions';
+import { AppCheck, getLimitedUseToken } from '@angular/fire/app-check';
 
 @Injectable({
   providedIn: 'root'
@@ -14,15 +14,15 @@ export class ChatService {
   constructor(
     private httpClient: HttpClient,
     private functions: Functions,
+    private appCheck: AppCheck
   ) {
-    this.functions.region = 'europe-west6'
-      
+    this.functions.region = 'europe-west6';
   }
 
   // Define a method to send a message and receive a response from ChatGPT
   public chat(message: string): Observable<string> {
     let chatApiKeyCallable = httpsCallable(this.functions, 'sendChatMessage');
-      return from(chatApiKeyCallable.call({}, {message: message}))
+      return from(chatApiKeyCallable.call({ getLimitedUseToken: true}, {message: message}))
         .pipe(
           map(res => res.data as string)
         );
