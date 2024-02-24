@@ -56,3 +56,6 @@ e2e/*.map
 .DS_Store
 mcarf.angular.cv/src/app/environments/environment.ts
 mcarf.angular.cv/src/environments/environment.development.ts
+
+mcarf.angular.cv/.firebase/
+/mcarf.angular.cv/public

@@ -50,7 +50,7 @@ export const sendChatMessage = onCall(
   {
     region: "europe-west6",
     enforceAppCheck: true,
-    consumeAppCheckToken: true,
+    // consumeAppCheckToken: true,
   }, async (request) => {
     const doc = await admin.firestore()
       .collection("api-keys")
