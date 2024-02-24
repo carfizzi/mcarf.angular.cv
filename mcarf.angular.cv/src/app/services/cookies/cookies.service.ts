@@ -10,7 +10,7 @@ export class CookieStorageService {
 
   // Method to save a string value to a cookie
   setCookie(key: string, value: string, expireDays: number = 7): void {
-    this.cookieService.set(key, value, expireDays, undefined, undefined, true);
+    this.cookieService.set(key, value, expireDays, undefined, undefined, true, 'Strict');
   }
 
   // Method to retrieve a string value from a cookie
