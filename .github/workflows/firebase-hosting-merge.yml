@@ -15,6 +15,7 @@ jobs:
         working-directory: 'mcarf.angular.cv'
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
+          entryPoint: 'mcarf.angular.cv'
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_MCARFIZZI_CV }}'
           channelId: live
