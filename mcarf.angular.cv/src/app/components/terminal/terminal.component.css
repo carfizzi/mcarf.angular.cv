@@ -11,6 +11,7 @@
 .separator {
     width: 95%;
     border: 0.1px solid gray;
+    opacity: 0.1;
 }
 
 .command {
