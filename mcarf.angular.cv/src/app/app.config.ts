@@ -7,6 +7,7 @@ import { getFunctions, provideFunctions } from '@angular/fire/functions';
 import { environment } from '../environments/environment';
 import { ReCaptchaV3Provider, initializeAppCheck, provideAppCheck } from '@angular/fire/app-check';
 import { getStorage, provideStorage } from '@angular/fire/storage';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -14,6 +15,7 @@ export const appConfig: ApplicationConfig = {
     importProvidersFrom([
       provideFirebaseApp(() => initializeApp(environment.firebase)),
       provideFunctions(() => getFunctions()),
+      provideFirestore(() => getFirestore()),
       provideAppCheck(() => initializeAppCheck(getApp(), {
         provider: new ReCaptchaV3Provider('6LcTTH4pAAAAADSEPowmz5xwy7IRwhwb10mfqViG')
       })),

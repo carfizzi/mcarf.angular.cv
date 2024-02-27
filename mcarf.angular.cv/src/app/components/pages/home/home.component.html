@@ -1,0 +1,76 @@
+<div class="d-flex flex-column sticky-content" style="padding: 24px;">
+    <div class="d-flex flex-row justify-content-between align-items-center" style="margin-bottom: 48px;">
+        <img src="assets/propic.jpg" alt="Marco Carfizzi" id="propic">
+        <div class="d-flex flex-column align-items-end" >
+            <span class="title">Hi!</span>
+            <span class="title">I'm Marco Carfizzi.</span>
+        </div>
+    </div>
+    <div class="d-flex flex-column justify-content-center" id="about-paragraph">
+        <div class="d-flex">
+            I'm a passionate software developer with a keen
+            focus on web technologies.
+        </div>
+        <div class="d-flex">
+            Since May 2022, I've been delving deep into the world of coding,
+            crafting digital experiences and solutions that bridge the gap between imagination and reality.
+        </div>
+        <div class="d-flex">
+            My journey into the world of technology commenced during my master's degree in computer science
+            at the esteemed University Ca' Foscari of Venezia, where I graduated with distinction, earning a
+            grade of 110/110. Armed with a solid understanding of computing principles, I embarked on a
+            mission to apply my knowledge in real-world scenarios.
+        </div>
+        <div class="d-flex">
+            Driven by a relentless curiosity and a hunger for innovation, I thrive on the challenges
+            inherent in this dynamic field. From designing elegant user interfaces to architecting robust
+            backend systems, I revel in every aspect of the development process.
+        </div>
+        <div class="d-flex">
+            This website serves as a testament to my dedication, showcasing a portfolio of my projects,
+            insights into my methodologies, and a glimpse into the technologies that fuel my passion. Join
+            me on this journey as we explore the endless possibilities that the digital landscape has to
+            offer.
+        </div>
+        <div class="d-flex title bold" style="margin-top: 24px;">
+            Let's build something incredible, together.
+        </div>
+    </div>
+
+</div>
+<!-- Work experience -->
+<div class="d-flex flex-column justify-content-center align-items-center sticky-content-middle">
+    <span class="title" style="margin-bottom: 64px;">Experience</span>
+    <div class="d-flex flex-column align-items-center" style="gap: 48px;">
+        @for (experience of experiences$ | async | experienceSort; track $index) {
+        <div class="d-flex flex-column experience-element"
+            [ngClass]="{'experience-element-left': $index % 2 === 0, 'experience-element-right': $index % 2 !== 0}">
+            <span class="sub-title bold">{{experience.location}}</span>
+            <span class="small">{{experience.from}} - {{experience.to}}</span>
+            <span>{{experience.duties}}</span>
+            <span>{{experience.description}}</span>
+        </div>
+        }
+    </div>
+</div>
+<!-- Projects -->
+<div class="sticky-content d-flex flex-column justify-content-center align-items-center">
+    <span class="title">Projects</span>
+    <div class="d-flex flex-column justify-content-center">
+        @for (project of projects$ | async; track $index) {
+        <div class="d-flex flex-row align-items-center box-container">
+            <!-- <img [src]="project.logo" /> -->
+            <div class="d-flex flex-column box">
+                <span class="sub-title bold">{{project.name}}</span>
+                <span>{{project.description}}</span>
+                @if (project.github) {
+                <a [href]="project.github" target="_blank" rel="noopener noreferrer">GitHub</a>
+                }
+                @if (project.link) {
+                <a [href]="project.link" target="_blank" rel="noopener noreferrer">Link</a>
+                }
+            </div>
+        </div>
+        }
+    </div>
+</div>

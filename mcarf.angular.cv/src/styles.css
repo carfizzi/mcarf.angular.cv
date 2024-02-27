@@ -4,7 +4,6 @@ body {
     color: var(--text-accent);
     font-family: monospace;
     height: 100%;
-    overflow: hidden;
 }
 
 /* COLORS https://coolors.co/2191fb-ba274a-4e6e58-4c8577-1b1b1e */
@@ -13,6 +12,7 @@ body {
     --text-accent: #4C8577;
     --text-accent-secondary: #4E6E58;
     --text-secondary: #2191FB;
+    --text-primary-contrast: #EBF5EE;
     --text-error: #BA274A;
 }
 
@@ -23,11 +23,12 @@ body {
 
 ::-webkit-scrollbar-track {
     background: var(--text-accent-secondary);
+    border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb {
     background-color: rgba(0, 0, 0, 0.5);
-    border-radius: 10px;
+    border-radius: 5px;
 }
 
 /* Firefox */
@@ -37,11 +38,12 @@ body {
 
 ::-moz-scrollbar-track {
     background: var(--text-accent-secondary);
+    border-radius: 5px;
 }
 
 ::-moz-scrollbar-thumb {
     background-color: rgba(0, 0, 0, 0.5);
-    border-radius: 10px;
+    border-radius: 5px;
 }
 
 /* Edge and IE */
@@ -88,6 +90,14 @@ scrollbar-thumb {
     justify-content: center;
 }
 
+.justify-content-start {
+    justify-content: flex-start;
+}
+
+.justify-content-end {
+    justify-content: flex-end;
+}
+
 .flew-row {
     flex-direction: row;
 }
@@ -100,9 +110,17 @@ scrollbar-thumb {
     align-items: center;
 }
 
+.align-items-end {
+    align-items: end;
+}
+
 .terminal-box {
     border-radius: 8px;
     border: 2px solid var(--text-accent);
     padding: 16px;
     margin: 8px;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
 }
