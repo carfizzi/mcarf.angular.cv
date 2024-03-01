@@ -1,12 +1,3 @@
-/**
- * Import function triggers from their respective submodules:
- *
- * import {onCall} from "firebase-functions/v2/https";
- * import {onDocumentWritten} from "firebase-functions/v2/firestore";
- *
- * See a full list of supported triggers at https://firebase.google.com/docs/functions
- */
-
 import {onCall} from "firebase-functions/v2/https";
 import OpenAI from "openai";
 import * as admin from "firebase-admin";
@@ -38,19 +29,12 @@ const systemContent = "You are Marco Carfizzi, " +
   "with news in the field of technology"+
   ", basketball (you used to play for several years and were a referee too)";
 
-// Start writing functions
-// https://firebase.google.com/docs/functions/typescript
-
-// export const helloWorld = onRequest((request, response) => {
-//   logger.info("Hello logs!", {structuredData: true});
-//   response.send("Hello from Firebase!");
-// });
-
+// Retrieve openAI api key from db and send requested message
+// Returns: gpt-3.5.turbo answer
 export const sendChatMessage = onCall(
   {
     region: "europe-west6",
     enforceAppCheck: true,
-    // consumeAppCheckToken: true,
   }, async (request) => {
     const doc = await admin.firestore()
       .collection("api-keys")
@@ -69,12 +53,4 @@ export const sendChatMessage = onCall(
       stream: false,
     });
     return stream.choices[0].message.content;
-    // for await (const chunk of stream) {
-    //   return (chunk.choices[0]?.delta?.content || "");
-    // }
-    // return "";
-    // if ( !request.auth ) {
-    //   throw new HttpsError("unauthenticated",
-    //     "The function must be called while authenticated");
-    // }
   });

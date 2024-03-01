@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Subject, interval, mergeMap, of } from 'rxjs';
+import { Subject, map, mergeMap, of } from 'rxjs';
 import { ChatService } from '../../services/chat/chat.service';
 import { Command } from '../../models/command';
 import { CommandType } from '../../enums/command-type';
@@ -97,11 +97,11 @@ export class TerminalComponent implements OnInit {
   private executeInputCommand(input: string): string {
     switch (input.trim().toLowerCase()) {
       case 'help':
-        return 'Elenco dei comandi disponibili: help, about, contact';
+        return 'Commands: help, about, contact. Ask me anything else to know me.';
       case 'about':
-        return 'Questo è un terminale simulato creato con Angular.';
+        return 'A simple web-app made with Angular, Firebase and OpenAI.';
       case 'contact':
-        return "Puoi contattarci all'indirizzo email: marco.carfizzi@gmail.com";
+        return "Email contact: marco@carfizzy.dev";
       default:
         return '';
     }
