@@ -30,7 +30,7 @@ export class TerminalPageComponent implements OnInit {
 
     ngOnInit(): void {
         this.updateLastLoginDate();
-
+        this.titleService.setTitle('Marco Carfizzi - CurriculumGPT')
     }
 
     private updateLastLoginDate(): void {

@@ -97,11 +97,11 @@ export class TerminalComponent implements OnInit {
   private executeInputCommand(input: string): string {
     switch (input.trim().toLowerCase()) {
       case 'help':
-        return 'Elenco dei comandi disponibili: help, about, contact';
+        return 'Commands: help, about, contact. Ask me anything else to know me.';
       case 'about':
-        return 'Questo è un terminale simulato creato con Angular.';
+        return 'A simple web-app made with Angular, Firebase and OpenAI.';
       case 'contact':
-        return "Puoi contattarci all'indirizzo email: marco.carfizzi@gmail.com";
+        return "Email contact: marco@carfizzy.dev";
       default:
         return '';
     }

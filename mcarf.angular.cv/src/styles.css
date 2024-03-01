@@ -4,6 +4,7 @@ body {
     color: var(--text-accent);
     font-family: monospace;
     height: 100%;
+    margin: 0px;
 }
 
 /* COLORS https://coolors.co/2191fb-ba274a-4e6e58-4c8577-1b1b1e */

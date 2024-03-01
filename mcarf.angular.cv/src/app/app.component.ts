@@ -20,6 +20,6 @@ export class AppComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.titleService.setTitle('Marco Carfizzi - Home')
+    this.titleService.setTitle('Marco Carfizzi - Home');
   }
 }
