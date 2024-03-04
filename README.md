@@ -1,5 +1,5 @@
 
-# Terminal Curriculumn Vitae
+# Terminal Curriculum Vitae
 
 A simple web app written with Angular to illustrate my curriculum vitae in a funny way.
 
@@ -17,7 +17,7 @@ Clone the project
 Go to the project directory
 
 ```bash
-  cd mcarf.angular.cv.
+  cd mcarf.angular.cv
 ```
 
 Install dependencies
