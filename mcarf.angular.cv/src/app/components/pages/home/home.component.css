@@ -11,7 +11,7 @@ a {
   font-size: large;
   gap: 24px;
   width: 98%;
-  white-space: unset
+  white-space: unset;
 }
 
 .sticky-content {
@@ -78,4 +78,31 @@ img#propic {
   border-radius: 50%;
   height: 150px;
   width: 150px;
+}
+
+div#welcome-section {
+  margin-bottom: 48px;
+  flex-direction: row;
+}
+
+div#welcome-section-title {
+  align-items: end;
+}
+
+a {
+  text-decoration: none;
+}
+
+@media (orientation: portrait) {
+
+  div#welcome-section {
+    margin-bottom: 48px;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+
+  div#welcome-section-title {
+    align-items: center;
+  }
 }
