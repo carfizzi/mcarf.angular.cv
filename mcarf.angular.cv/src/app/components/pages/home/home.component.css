@@ -1,6 +1,7 @@
 :host {
-  display: block;
-  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 a {
