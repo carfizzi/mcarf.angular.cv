@@ -6,14 +6,14 @@ import { Project } from '../../../interfaces/project';
 import { Experience } from '../../../interfaces/experience';
 import { ExperiencesService } from '../../../services/experiences/experiences.service';
 import { ExperienceSortPipe } from "../../../pipes/experience-sort.pipe";
-
+import AOS from 'aos';
 
 @Component({
     selector: 'app-home',
     standalone: true,
     templateUrl: './home.component.html',
     styleUrl: './home.component.css',
-    changeDetection: ChangeDetectionStrategy.OnPush,
+    changeDetection: ChangeDetectionStrategy.Default,
     imports: [
         CommonModule,
         ExperienceSortPipe
@@ -29,6 +29,7 @@ export class HomeComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
+        AOS.init();
         this.projects$ = this.projectsService.getAllProjects();
         this.experiences$ = this.experienceService.getAllExperiences();
     }
