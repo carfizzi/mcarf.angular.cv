@@ -1,4 +1,4 @@
-<div class="d-flex flex-column sticky-content" style="padding: 24px;">
+<div class="d-flex flex-column sticky-content padding-base">
     <div class="d-flex justify-content-between" id="welcome-section">
         <img src="assets/propic.jpg" alt="Marco Carfizzi" id="propic" data-aos="fade-right">
         <div class="d-flex flex-column justify-content-center" data-aos="fade-left" id="welcome-section-title">
@@ -56,7 +56,7 @@
 </div>
 <!-- Projects -->
 <div class="sticky-content d-flex flex-column justify-content-center align-items-center">
-    <span class="title">Projects</span>
+    <span class="title padding-base">Projects</span>
     <div class="d-flex flex-column justify-content-center">
         @for (project of projects$ | async; track $index) {
         <div class="d-flex flex-row align-items-center box-container"

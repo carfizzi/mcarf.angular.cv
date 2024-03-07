@@ -125,3 +125,7 @@ scrollbar-thumb {
 .flex-wrap {
     flex-wrap: wrap;
 }
+
+.padding-base {
+    padding: 24px;
+}
