@@ -57,7 +57,7 @@
 <!-- Projects -->
 <div class="sticky-content d-flex flex-column justify-content-center align-items-center">
     <span class="title padding-base">Projects</span>
-    <div class="d-flex flex-column justify-content-center">
+    <div class="d-flex flex-wrap justify-content-center">
         @for (project of projects$ | async; track $index) {
         <div class="d-flex flex-row align-items-center box-container"
         data-aos="zoom-out-up">
