@@ -11,7 +11,6 @@ import { AsciiSpinnerComponent } from "../ascii-spinner/ascii-spinner.component"
     selector: 'app-terminal',
     templateUrl: './terminal.component.html',
     styleUrls: ['./terminal.component.css'],
-    standalone: true,
     imports: [CommonModule, FormsModule, AsciiSpinnerComponent]
 })
 export class TerminalComponent implements OnInit {

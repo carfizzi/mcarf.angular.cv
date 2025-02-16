@@ -7,7 +7,6 @@ import { HeaderComponent } from "../../header/header.component";
 
 @Component({
     selector: 'app-terminal-page',
-    standalone: true,
     templateUrl: './terminal-page.component.html',
     styleUrl: './terminal-page.component.css',
     changeDetection: ChangeDetectionStrategy.Default,
