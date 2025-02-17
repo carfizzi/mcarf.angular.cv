@@ -5,13 +5,12 @@ import { interval } from 'rxjs';
 
 @Component({
     selector: 'app-ascii-spinner',
-    standalone: true,
     imports: [
         CommonModule,
     ],
     templateUrl: './ascii-spinner.component.html',
     styleUrl: './ascii-spinner.component.css',
-    changeDetection: ChangeDetectionStrategy.Default,
+    changeDetection: ChangeDetectionStrategy.Default
 })
 export class AsciiSpinnerComponent implements OnInit { 
     private readonly dotsSpinner = new Spinner("dots", 80, ["⠋","⠙","⠹","⠸","⠼","⠴","⠦","⠧","⠇","⠏"]);

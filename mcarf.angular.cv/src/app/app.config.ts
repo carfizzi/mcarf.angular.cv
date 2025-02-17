@@ -12,15 +12,14 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideHttpClient(),
-    importProvidersFrom([
-      provideFirebaseApp(() => initializeApp(environment.firebase)),
-      provideFunctions(() => getFunctions()),
-      provideFirestore(() => getFirestore()),
-      provideAppCheck(() => initializeAppCheck(getApp(), {
-        provider: new ReCaptchaV3Provider('6LcTTH4pAAAAADSEPowmz5xwy7IRwhwb10mfqViG')
-      })),
-      provideStorage(() => getStorage()),
-    ]),
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideFunctions(() => getFunctions()),
+    provideFirestore(() => getFirestore()),
+    provideAppCheck(() => initializeAppCheck(getApp(), {
+      provider: new ReCaptchaV3Provider('6LcTTH4pAAAAADSEPowmz5xwy7IRwhwb10mfqViG')
+    })),
+    provideStorage(() => getStorage()),
+
     provideRouter(routes)
   ]
 };

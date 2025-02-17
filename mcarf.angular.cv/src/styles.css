@@ -1,10 +1,8 @@
-/* You can add global styles to this file, and also import other style files */
 body {
     background-color: var(--text-primary);
     color: var(--text-accent);
-    font-family: monospace;
     height: 100%;
-    margin: 0px;
+    margin: 0;
 }
 
 /* COLORS https://coolors.co/2191fb-ba274a-4e6e58-4c8577-1b1b1e */
@@ -123,7 +121,7 @@ scrollbar-thumb {
 }
 
 .flex-wrap {
-    flex-wrap: wrap;
+  flex-flow: wrap;
 }
 
 .padding-base {
