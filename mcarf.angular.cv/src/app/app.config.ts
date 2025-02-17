@@ -8,6 +8,7 @@ import { environment } from '../environments/environment';
 import { ReCaptchaV3Provider, initializeAppCheck, provideAppCheck } from '@angular/fire/app-check';
 import { getStorage, provideStorage } from '@angular/fire/storage';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -20,6 +21,6 @@ export const appConfig: ApplicationConfig = {
     })),
     provideStorage(() => getStorage()),
 
-    provideRouter(routes)
+    provideRouter(routes), provideClientHydration(withEventReplay())
   ]
 };
