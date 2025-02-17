@@ -4,6 +4,11 @@
   overflow: hidden;
 }
 
+::ng-deep body {
+  font-family: "Noto Serif", sans-serif;
+  font-optical-sizing: auto;
+}
+
 a {
   color: var(--primary) !important;
 }

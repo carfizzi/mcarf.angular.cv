@@ -6,6 +6,10 @@ body {
   overflow: hidden;
 }
 
+::ng-deep body {
+  font-family: monospace;
+}
+
 input#touch-catcher {
   opacity: 0;
   position: fixed;

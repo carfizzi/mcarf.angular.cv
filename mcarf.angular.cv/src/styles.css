@@ -1,14 +1,6 @@
-@font-face {
-  font-family: 'iosevka';
-  src: url('assets/fonts/Iosevka-Regular.ttc');
-  font-weight: normal;
-  font-style: normal;
-}
-
 body {
     background-color: var(--text-primary);
     color: var(--text-accent);
-    font-family: 'iosevka', monospace;
     height: 100%;
     margin: 0;
 }
